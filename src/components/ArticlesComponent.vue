@@ -1,17 +1,24 @@
 <template>
 
 	<div class="container">
-		
-	<div class="card" v-for="recipe in recipes" v-bind:key="recipe.title" v-bind:title="recipe.title.rendered"
-		v-bind:content="recipe.content.rendered">
-		<!--<img src="" class="card-img-top" alt="...">-->
-		<div class="card-body">
-			<h5 class="card-title" v-html="recipe.title"></h5>
-			<p class="card-text" v-html="recipe.content"></p>
-			<a href="javascript:void(0)" class="btn btn-success">Read more</a>
-		</div>
-	</div>
 
+		<h1 class="alert alert-success" role="alert">Recettes!</h1>
+
+		<ArticleComponent v-for="recipe in recipes" v-bind:key="recipe.title" v-bind:title="recipe.title"
+			v-bind:content="recipe.content"/>
+
+		<!--
+		<div class="card" v-for="recipe in recipes" v-bind:key="recipe.title" v-bind:title="recipe.title.rendered"
+			v-bind:content="recipe.content.rendered">
+			<img src="" class="card-img-top" alt="...">
+			<div class="card-body">
+				<h5 class="card-title" v-html="recipe.title"></h5>
+				<p class="card-text" v-html="recipe.content"></p>
+				<a href="javascript:void(0)" class="btn btn-success">Read more</a>
+			</div>
+		</div>
+		-->
+		
 	</div>
 	<!--<div></div>-->
 
@@ -19,10 +26,13 @@
 
 <script>
 // @ is an alias to /src
+import ArticleComponent from '@/components/ArticleComponent.vue'
 
 export default {
 	name: 'ArticlesComponent',
-	components: {},
+	components: {
+		ArticleComponent
+	},
 	props: {},
 	data() {
 		return {

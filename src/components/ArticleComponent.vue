@@ -1,6 +1,18 @@
 <template>
 
-	<div></div>
+	<div class="container">
+		
+		<div class="card">
+			<!--<img src="" class="card-img-top" alt="...">-->
+			<div class="card-body">
+				<h5 class="card-title">{{ title }}</h5>
+				<p class="card-text">{{ content }}</p>
+				<a href="javascript:void(0)" class="btn btn-success">Read more</a>
+			</div>
+		</div>
+
+	</div>
+	<!--<div></div>-->
 
 </template>
 
@@ -9,12 +21,15 @@
 export default {
 	name: 'ArticleComponent.vue',
 	components: {},
-	props: {},
+	props: {
+		title: String,
+		content: String
+	},
 	data() {
-
+			return {}
 	},
 	computed: {},
-	mounted() { },
+	mounted() {},
 	methods: {}
 }
 </script>
