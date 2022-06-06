@@ -5,8 +5,8 @@
 		<div class="card">
 			<!--<img src="" class="card-img-top" alt="...">-->
 			<div class="card-body">
-				<h5 class="card-title">{{ title }}</h5>
-				<p class="card-text">{{ content }}</p>
+				<h5 class="card-title" v-html="title"></h5>
+				<p class="card-text" v-html="content"></p>
 				<a href="javascript:void(0)" class="btn btn-success">Read more</a>
 			</div>
 		</div>

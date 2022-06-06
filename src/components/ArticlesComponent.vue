@@ -4,8 +4,8 @@
 
 		<h1 class="alert alert-success" role="alert">Recettes!</h1>
 
-		<ArticleComponent v-for="recipe in recipes" v-bind:key="recipe.title" v-bind:title="recipe.title"
-			v-bind:content="recipe.content"/>
+		<ArticleComponent v-for="recipe in recipes" v-bind:key="recipe.title" v-bind:title="recipe.title.rendered"
+			v-bind:content="recipe.content.rendered"/>
 
 		<!--
 		<div class="card" v-for="recipe in recipes" v-bind:key="recipe.title" v-bind:title="recipe.title.rendered"
@@ -27,6 +27,8 @@
 <script>
 // @ is an alias to /src
 import ArticleComponent from '@/components/ArticleComponent.vue'
+
+import ServicesRecipes from '@/services/ServicesRecipes.js'
 
 export default {
 	name: 'ArticlesComponent',
@@ -53,7 +55,15 @@ export default {
 		}
 	},
 	computed: {},
-	mounted() {},
+	mounted() {
+		//console.log(ServicesRecipes.findAll()) // Debug
+		ServicesRecipes.findAll().then(
+			(response) => {
+				//console.log(response.data) // Debug
+				this.recipes = response.data
+			}
+		)
+	},
 	methods: {}
 }
 </script>
