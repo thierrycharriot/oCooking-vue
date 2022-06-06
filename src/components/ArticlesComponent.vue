@@ -62,7 +62,7 @@ export default {
 		//console.log(ServicesRecipes.findAll()) // Debug
 		ServicesRecipes.findAll().then(
 			(response) => {
-				console.log(response.data) // Debug
+				//console.log(response.data) // Debug
 				this.recipes = response.data
 			}
 		)

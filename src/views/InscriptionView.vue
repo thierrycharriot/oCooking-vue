@@ -1,12 +1,22 @@
 <template>
-    <div></div>
+
+    <HeaderComponent />
+    <div class="container">
+      <h1 class="alert alert-success" role="alert">Inscription!</h1>
+    </div>
+    <!--<div></div>-->
+
 </template>
 
 <script>
+// @ is an alias to /src
+import HeaderComponent from '@/components/HeaderComponent.vue'
 
   export default {
     name: 'InscriptionView',
-    components: {},
+    components: {
+      HeaderComponent
+    },
     props: {},
     data() {
       return {}
@@ -18,6 +28,8 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
-
+<style scoped>
+	.alert {
+		margin-top: 3rem;
+	}
 </style>
