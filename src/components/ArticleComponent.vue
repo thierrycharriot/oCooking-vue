@@ -3,7 +3,7 @@
 	<div class="container">
 		
 		<div class="card">
-			<!--<img src="" class="card-img-top" alt="...">-->
+			<img v-bind:src="image" class="card-img-top" alt="...">
 			<div class="card-body">
 				<h5 class="card-title" v-html="title"></h5>
 				<p class="card-text" v-html="content"></p>
@@ -23,7 +23,8 @@ export default {
 	components: {},
 	props: {
 		title: String,
-		content: String
+		content: String,
+		image: String
 	},
 	data() {
 			return {}

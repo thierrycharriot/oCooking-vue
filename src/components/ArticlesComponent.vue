@@ -5,7 +5,7 @@
 		<h1 class="alert alert-success" role="alert">Recettes!</h1>
 
 		<ArticleComponent v-for="recipe in recipes" v-bind:key="recipe.title" v-bind:title="recipe.title.rendered"
-			v-bind:content="recipe.content.rendered"/>
+			v-bind:content="recipe.content.rendered" v-bind:image="recipe._embedded['wp:featuredmedia'][0].source_url" />
 
 		<!--
 		<div class="card" v-for="recipe in recipes" v-bind:key="recipe.title" v-bind:title="recipe.title.rendered"
@@ -38,6 +38,7 @@ export default {
 	props: {},
 	data() {
 		return {
+			/*
 			recipes: [
 				{
 					title: 'Wok de gambas, riz, curry et poireau',
@@ -52,6 +53,8 @@ export default {
 					content: 'Préchauffer le four à 180°C. '
 				}
 			]
+		*/
+			recipes: null
 		}
 	},
 	computed: {},
@@ -59,7 +62,7 @@ export default {
 		//console.log(ServicesRecipes.findAll()) // Debug
 		ServicesRecipes.findAll().then(
 			(response) => {
-				//console.log(response.data) // Debug
+				console.log(response.data) // Debug
 				this.recipes = response.data
 			}
 		)
