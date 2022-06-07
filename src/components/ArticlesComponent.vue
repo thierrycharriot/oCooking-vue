@@ -5,7 +5,7 @@
 		<h1 class="alert alert-success" role="alert">Recettes!</h1>
 
 		<ArticleComponent v-for="recipe in recipes" v-bind:key="recipe.title" v-bind:title="recipe.title.rendered"
-			v-bind:content="recipe.content.rendered" v-bind:image="recipe._embedded['wp:featuredmedia'][0].source_url" />
+			v-bind:content="recipe.content.rendered" v-bind:id="recipe.id" />
 
 		<!--
 		<div class="card" v-for="recipe in recipes" v-bind:key="recipe.title" v-bind:title="recipe.title.rendered"

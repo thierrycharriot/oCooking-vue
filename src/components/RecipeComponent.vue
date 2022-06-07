@@ -1,6 +1,17 @@
 <template>
 
-	<div></div>
+	<div class="container">
+		
+		<div class="card">
+			<img v-bind:src="image" class="card-img-top" alt="...">
+			<div class="card-body">
+				<h5 class="card-title" v-html="title"></h5>
+				<p class="card-text" v-html="content"></p>
+			</div>
+		</div>
+
+	</div>
+	<!--<div></div>-->
 	
 </template>
 
@@ -9,7 +20,11 @@
 export default {
 	name: 'RecipeComponent.vue',
 	components: {},
-	props: {},
+	props: {
+		title: String,
+		content: String,
+		image: String
+	},
 	data() {
 		return {}
 	},

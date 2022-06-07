@@ -20,6 +20,6 @@ export default {
     },
     find(id) {
         //return apiClient.get(`/recipes/${id}?_embed`) // égal
-        //return apiClient.get("/recipes/" + id + "?_embed")
+        return apiClient.get("/recipes/" + id + "?_embed")
     }
 }
