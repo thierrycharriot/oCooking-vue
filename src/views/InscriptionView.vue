@@ -3,9 +3,10 @@
   <HeaderComponent />
 
   <div class="container">
-
-    <h1 class="alert alert-success" role="alert">Inscription!</h1>
-    <p v-for="error in errors" :key="error">{{ error }}</p>
+    
+    <div class="alert alert-success alert-dismissible" v-if="success">{{ success }}</div>
+    <div class="alert alert-warning alert-dismissible" v-for="error in errors" :key="error">{{ error }}</div>
+    <h1 class="alert alert-primary" role="alert">Inscription!</h1>
 
     <fieldset class="mb-3">
       <div class="mb-3">
@@ -43,6 +44,8 @@
 // @ is an alias to /src
 import HeaderComponent from '@/components/HeaderComponent.vue'
 
+import ServicesUsers from'@/services/ServicesUsers'
+
 export default {
   name: 'InscriptionView',
   components: {
@@ -70,9 +73,6 @@ export default {
       if (!this.username) {
         this.errors.push("Username must not be empty");
       }
-      if (!this.role) {
-        this.errors.push("Role must not be empty");
-      }
       if (!this.password || !this.password_check) {
         this.errors.push("Password and Password_check must be filled");
       } else {
@@ -80,8 +80,18 @@ export default {
           this.errors.push("Password and Password_check must be the same");
         }
       }
-      console.log('IT WORKS!');
-      // @TODO Executer une requete Asynchrone pour inscrire un nouvel utilisateur
+      if (!this.role) {
+        this.errors.push("Role must not be empty");
+      }
+      //console.log('IT WORKS!');
+      ServicesUsers.register({
+        username: this.username,
+        email: this.email,
+        password: this.password,
+        role: this.role
+      }, (error) => {
+        this.error.push(error)
+      })      
     }
   }
 }
@@ -90,6 +100,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .alert {
-  margin-top: 3rem;
+  margin-top: 1.5rem;
 }
 </style>

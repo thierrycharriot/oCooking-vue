@@ -2,7 +2,7 @@
 
 	<div class="container">
 
-		<h1 class="alert alert-success" role="alert">Recettes!</h1>
+		<h1 class="alert alert-primary" role="alert">Recettes!</h1>
 
 		<ArticleComponent v-for="recipe in recipes" v-bind:key="recipe.title" v-bind:title="recipe.title.rendered"
 			v-bind:content="recipe.content.rendered" v-bind:id="recipe.id" />

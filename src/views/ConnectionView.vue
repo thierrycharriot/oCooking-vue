@@ -2,8 +2,10 @@
 
   <HeaderComponent />
   <div class="container">
-    <h1 class="alert alert-success" role="alert">Connection!</h1>
-    <p v-for="error in errors" :key="error">{{ error }}</p>
+
+    <div class="alert alert-success alert-dismissible" v-if="success">{{ success }}</div>
+    <div class="alert alert-warning alert-dismissible" v-for="error in errors" :key="error">{{ error }}</div>
+    <h1 class="alert alert-primary" role="alert">Connection!</h1>
 
     <fieldset class="mb-3">
       <div class="mb-3">
@@ -25,6 +27,8 @@
 // @ is an alias to /src
 import HeaderComponent from '@/components/HeaderComponent.vue'
 
+import ServicesUsers from'@/services/ServicesUsers'
+
 export default {
   name: 'ConnectionView',
   components: {
@@ -33,6 +37,7 @@ export default {
   props: {},
   data() {
     return {
+      success: null,
       errors: [],
       username: null,
       password: null
@@ -46,14 +51,23 @@ export default {
       if (!this.username) {
         this.errors.push("Username must not be empty");
       }
-      if (!this.role) {
-        this.errors.push("Role must not be empty");
-      }
       if (!this.password) {
         this.errors.push("Password must not be empty");
       } 
-      console.log('IT WORKS!');
-      // @TODO Executer une requete Asynchrone pour inscrire un nouvel utilisateur
+      //console.log('IT WORKS!'); // Debug
+      if(this.errors.length === 0) {
+        ServicesUsers.connect({
+          username: this.username,
+          password: this.password
+        }, (data) => {
+          console.log(data)
+          if(data.type === "success") {
+            this.success = data.message
+          } else {
+            this.errors.push(data.message)
+          }
+        })  
+      }
     }
   }
 }
@@ -62,6 +76,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .alert {
-  margin-top: 3rem;
+  margin-top: 1.2rem;
 }
 </style>
